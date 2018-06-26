@@ -17,10 +17,10 @@ RUN apt-get install -y build-essential vim git wget unzip python2.7 python-pil p
 RUN pip install requests
 
 # NodeJS
-RUN wget -O nodejs.sh https://deb.nodesource.com/setup_4.x
+RUN wget -O nodejs.sh https://deb.nodesource.com/setup_8.x
 RUN chmod +x nodejs.sh
 RUN sh ./nodejs.sh
-RUN apt-get install -y nodejs
+# RUN apt-get install -y nodejs
 RUN ln -s -f /usr/bin/nodejs /usr/bin/node
 
 # Golang
@@ -50,9 +50,13 @@ RUN ./configure && make && make install
 RUN turnadmin -a -u ninefingers -r apprtc -p youhavetoberealistic
 COPY turnserver.conf /etc/turnserver.conf
 
+# Java
+RUN apt-get install -y openjdk-8-jre-headless
+
+
 # AppRTC
 WORKDIR /
-RUN git clone https://github.com/webrtc/apprtc.git
+RUN git clone https://github.com/vugga/apprtc.git
 
 WORKDIR apprtc
 
@@ -63,7 +67,7 @@ RUN go get collidermain
 RUN go install collidermain
 
 RUN npm install -g npm
-RUN npm install -g grunt-cli
+RUN npm install -g grunt
 
 RUN npm install
 RUN grunt build
