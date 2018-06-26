@@ -40,5 +40,9 @@ Note that range ports could be very slow and memory hungry, we can either replac
 About how to modify `constants.py`, see [this example from original project](https://github.com/Piasy/WebRTC-Docker/blob/master/apprtc-server/constants.py), `ICE_SERVER_BASE_URL`, `ICE_SERVER_URL_TEMPLATE` and `WSS_INSTANCES` has been modified.
 
 
-###Authors
+### Authors
 [Patrick Muhire](https://github.com/1k2k)
+
+#### Special thanks to
++ [WebRTC-Docker](https://github.com/Piasy/WebRTC-Docker)
++ [AppRTC](https://github.com/webrtc/apprtc)
