@@ -1,7 +1,7 @@
 sed -i "s/ICE_SERVER_ADDR/$PUBLIC_IP/g" ice.js
 sed -i 's/wss:\/\//ws:\/\//g' apprtc/out/app_engine/apprtc.py
 sed -i 's/https:\/\//http:\/\//g' apprtc/out/app_engine/apprtc.py
-cp /apprtc_configs/constants.py /apprtc/out/app_engine/constants.py
+cp constants.py /apprtc/out/app_engine/constants.py
 
 nodejs ice.js 2>> /iceconfig.log &
 
