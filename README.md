@@ -1,12 +1,12 @@
 # RTC-Docker
 
-Out-of-the-box docker image for WebRTC dev/test purpose.
+Out-of-the-box docker image for WebRTC dev/test purpose. i forked and combined old WebRTC implementations to fit a single command for deployment, nicely packed in a Dockerfile, share it, contribute, rewrite it your way.
 
 This project contains necessary servers to build a full WebRTC web app. mainly
 
 + Collide - go websocket server for signaling peers.
-+ ICE Server with TURN/STUN servers.
-+ Web server for rooms 
++ ICE Server with TURN/STUN servers for UDP media transmission.
++ Web server for joining rooms.
 + Static web app, the one you see on the fronend.
 
 ## Deploy
@@ -26,7 +26,7 @@ docker run --rm \
   -t -i image/tag
 ```
 
-About port publish:
+About ports:
 
 + `8080` is used for room server;
 + `8089` is used for signal server;
@@ -35,6 +35,10 @@ About port publish:
 
 So make sure your firewall has opened those ports.
 
-Note that publish range ports could be very slow and memory consuming, we can either replace all `-p` options into a single `--net=host` option, or disable userland proxy, see detail info in [this issue](https://github.com/moby/moby/issues/11185).
+Note that range ports could be very slow and memory hungry, we can either replace all `-p` options into a single `--net=host` option, or disable userland proxy, see detail info in [this issue](https://github.com/moby/moby/issues/11185).
 
 About how to modify `constants.py`, see [this example from original project](https://github.com/Piasy/WebRTC-Docker/blob/master/apprtc-server/constants.py), `ICE_SERVER_BASE_URL`, `ICE_SERVER_URL_TEMPLATE` and `WSS_INSTANCES` has been modified.
+
+
+###Authors
+[Patrick Muhire](https://github.com/1k2k)
