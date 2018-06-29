@@ -20,8 +20,8 @@ RUN pip install requests
 RUN wget -O nodejs.sh https://deb.nodesource.com/setup_8.x
 RUN chmod +x nodejs.sh
 RUN sh ./nodejs.sh
-# RUN apt-get install -y nodejs
-RUN ln -s -f /usr/bin/nodejs /usr/bin/node
+RUN apt-get install -y nodejs
+# RUN ln -s -f /usr/bin/nodejs /usr/bin/node
 
 # Golang
 ENV GOLANG_TAR go$GOLANG_VER.linux-amd64.tar.gz
