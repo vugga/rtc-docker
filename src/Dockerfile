@@ -8,7 +8,7 @@ WORKDIR /
 ENV GAE_VER 1.9.54
 ENV GOLANG_VER 1.8.3
 
-ENV PUBLIC_IP 127.0.0.1
+ENV PUBLIC_IP 35.182.141.196
 
 RUN apt-get update -y
 
@@ -21,7 +21,7 @@ RUN wget -O nodejs.sh https://deb.nodesource.com/setup_8.x
 RUN chmod +x nodejs.sh
 RUN sh ./nodejs.sh
 RUN apt-get install -y nodejs
-# RUN ln -s -f /usr/bin/nodejs /usr/bin/node
+#RUN ln -s -f /usr/bin/nodejs /usr/bin/node
 
 # Golang
 ENV GOLANG_TAR go$GOLANG_VER.linux-amd64.tar.gz
@@ -50,14 +50,9 @@ RUN ./configure && make && make install
 RUN turnadmin -a -u ninefingers -r apprtc -p youhavetoberealistic
 COPY turnserver.conf /etc/turnserver.conf
 
-# Java
-RUN apt-get install -y openjdk-8-jre-headless
-
-
 # AppRTC
 WORKDIR /
-RUN git clone https://github.com/vugga/apprtc.git
-
+RUN git clone https://github.com/vugga/apprtc.git #ri
 WORKDIR apprtc
 
 RUN ln -s /apprtc/src/collider/collider $GOPATH/src
@@ -70,6 +65,7 @@ RUN npm install -g npm
 RUN npm install -g grunt
 
 RUN npm install
+RUN apt-get install -y openjdk-8-jre-headless
 RUN grunt build
 
 WORKDIR /
@@ -79,7 +75,7 @@ COPY ice.js /
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+COPY constants.py /
 COPY run.sh /
 RUN chmod +x /run.sh
 CMD /run.sh
